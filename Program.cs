@@ -5,12 +5,20 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var isLocal = builder.Environment.IsDevelopment();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var config = builder.Configuration;
+
+string? connectionString = isLocal
+    ? config.GetConnectionString("LocalConnection")
+    : config.GetConnectionString("ServerConnection");
+
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Next"));
+    options.UseSqlServer(connectionString);
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
