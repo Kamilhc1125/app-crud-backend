@@ -35,6 +35,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/", () => "Welcome to Product API!");
+
 app.MapControllers();
 
 app.UseCors(builder =>
