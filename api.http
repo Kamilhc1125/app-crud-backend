@@ -1,6 +1,6 @@
 @api_HostAddress = https://kamil-rest-api-d3c4d5hgf8a3fndk.polandcentral-01.azurewebsites.net
 
-GET {{api_HostAddress}}/api/
+GET {{api_HostAddress}}/api/product
 Accept: application/json
 
 ###
