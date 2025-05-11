@@ -32,6 +32,13 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsProduction())
+{
+    app.UseExceptionHandler("/error"); 
+    app.UseHsts();
+    app.UseHttpsRedirection();
+}
+
 app.UseHttpsRedirection();
 
 app.MapControllers();
